@@ -1,7 +1,7 @@
 # Product API
 
 Esta es una API Rest diseñada para exponer información de productos, categorias,proveedores, clientes, empelados y
-ordendes. Aunque están los CRUD para todas ellas, se hizo enfasis en los evaludos en la práctica. De igual forma,
+ordendes. Aunque están los CRUD para todas ellas, se hizo enfasis en los evaluados en la práctica. De igual forma,
 cuentan con documentación básica de uso en swageer. Está construida con **Spring Boot**, **Java 17** y **base de datos H2**. Ofrece funcionalidades como CRUD de productos y categorías, búsqueda paginada con filtros, generación masiva asíncrona de productos, y está documentada con **Swagger**.
 
 ## 📄 Descripción
@@ -28,7 +28,7 @@ sería una arquitectura hexagonal donde esta funcionalidades se consumen desde o
 
 Adicionalmente, se contruye de tal forma que pueda ser contenerizado y desplegado dentro de un grupo de auto escalamiento
 que permita el crecimiento horizontal en picos de demanda teniando al frente un balanceador de cargar con un servicio como ECS-Fargate o
-en caso de requerir latencias mas bajas en la comunicación con otros servicios alojarse en un cluster de Kubernetes.
+en caso de requerir latencias mas bajas en la comunicación con otros servicios alojarse en un cluster de Kubernetes por lo menos en dos zonas de disponibilidad.
 
 ## 📃 Especificaciones Técnicas
 
@@ -43,7 +43,7 @@ en caso de requerir latencias mas bajas en la comunicación con otros servicios 
 
 ## ✅ Pruebas unitarias y de integración
 
-Se han desarrollado pruebas unitarias haciendo enfasis en las clases relacionadas con los punto evaluados
+Se han desarrollado pruebas unitarias haciendo enfasis en las clases relacionadas con los puntos evaluados
 para garantizar el correcto funcionamiento de los servicios:
 
 - Servicios probados con **Mockito**: `ProductsServiceImpl`, `CategoriesServiceImpl`, `AsyncProductsGeneratorService`
@@ -77,10 +77,10 @@ docker build -t product-api .
 ```bash
 docker run -p 8080:8080 product-api
 ```
-> Estos link se dejan públicos por simplicidad en fase de desarrollo. En un entrono real deben estar protegidos con control de acceso.
-> Los datos de conexión de la bd estan expuestos en un archivo .yml En entorno productivo deben almacenar en secretos bajo custioda y ser consumidos en tiempo de ejecución por al app.
+### 2.1 Disponible en el contedor
+> Los datos de conexión de la bd estan expuestos en un archivo .yml En entorno productivo deben almacenarse en secretos bajo custioda y ser consumidos en tiempo de ejecución por al app.
 
-
+> Estos link se dejan públicos por simplicidad en fase de desarrollo. En un entrono real deben estar protegidos con control de acceso. En la BD H2 el nombre de la bd es jdbc:h2:mem:testdb, entonces hay que cambiar el que sale por defecto.
 > ✅ Swagger disponible en: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) ✅ Consola H2 en: [http://localhost:8080/h2-console](http://localhost:8080/h2-console) ⚠️ Se habilitó `-Dh2.console.settings.web-allow-others=true` para permitir acceso desde Docker.
 
 ## ⚖️ Estrategia de carga masiva
